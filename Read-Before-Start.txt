@@ -1,0 +1,3 @@
+Task 1: This is the first task where you provided instructions
+       to add the required scripts to run React in an HTML page. 
+       You can use a live server to preview the HTML file.

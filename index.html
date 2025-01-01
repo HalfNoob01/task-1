@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task-1</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+  <!-- Babel script - it is for jsx if I don't add this not woking -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+ 
+  <script type="text/babel">
+   function App() {
+      const [data, setData] = React.useState([
+        "Onboarding Call",
+        "Google Search Console Access",
+        "Google Analytics Access",
+        "Website Access",
+        "Technical Audit",
+        "Anchor Text and Semantic Analysis",
+        "Competitor Analysis",
+        "Anchor Text / URL Mapping",
+        "Google Data Studio Report + Local Reporting Suite",
+        "Site Level Optimization",
+        "On Page Optimization",
+        "Content Creation",
+        "Content Publishing",
+        "Premium Press Release",
+        "Authority Niche Placements",
+        "Review Management",
+        "Index Links",
+        "Video Recap",
+      ].map((item, index) => ({ id: index + 1, task: item, editable: "" })));
+
+      const handleInputChange = (id, value) => {
+        const updatedData = data.map((item) =>
+          item.id === id ? { ...item, editable: value } : item
+        );
+        setData(updatedData);
+      };
+
+      const handleSave = () => {
+        console.log("Data ready for API:", JSON.stringify(data));
+        alert("Data is ready to post to API. Check the console for output.");
+      };
+
+      return (
+        <div>
+          <h1>Editable Monthly Tasks</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Task</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.task}</td>
+                  <td>
+                    <input
+                      type="text"
+                      placeholder="Add Notes"
+                      value={item.editable}
+                      onChange={(e) => handleInputChange(item.id, e.target.value)}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <button onClick={handleSave}>Save</button>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
